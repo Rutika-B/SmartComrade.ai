@@ -22,7 +22,7 @@ const Categories = ({ data }: CategoriesProps) => {
     const url = qs.stringifyUrl(
       {
         url: window.location.href,
-        query,
+        query:query as unknown as qs.ParsedQuery<string>,
       },
       { skipNull: true }
     );
