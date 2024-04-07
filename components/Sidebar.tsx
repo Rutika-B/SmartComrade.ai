@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, Plus, Settings } from "lucide-react";
+import {  Home, Image, Music, Plus, Settings, Video } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useProModal } from "@/hooks/use-pro-modal";
 
@@ -16,20 +16,43 @@ const Sidebar = ({ isPro }: SidebarProps) => {
   const routes = [
     {
       icon: Home,
-      href: "/",
-      label: "Home",
+      href: "/comrade",
+      label: "Comrades",
+      colr:"text-green-700",
       pro: false,
     },
     {
-      icon: Plus,
-      href: "/comrade/new",
-      label: "Create",
-      pro: true,
+      icon: Image,
+      href: "/image-generation",
+      label: "Image generation",
+      colr:"text-pink-700",
+      pro: false,
     },
+    {
+      icon: Video,
+      href: "/video-generation",
+      label: "Video generation",
+      colr: "text-orange-700",
+      pro: false,
+    },
+    {
+      icon: Music,
+      href: "/music-generation",
+      label: "Music generation",
+      colr:"text-yellow-500",
+      pro: false,
+    },
+    // {
+    //   icon: Plus,
+    //   href: "/comrade/new",
+    //   label: "Create",
+    //   pro: true,
+    // },
     {
       icon: Settings,
       href: "/settings",
       label: "Settings",
+      colr:"text-cyan-500",
       pro: false,
     },
   ];
@@ -52,8 +75,8 @@ const Sidebar = ({ isPro }: SidebarProps) => {
                 pathname === route.href && "bg-primary/10 text-primary"
               )}
             >
-              <div className="flex flex-col gap-y-2 items-center flex-1">
-                <route.icon className="h-5 w-5" />
+              <div className="flex flex-row gap-y-2 items-center flex-1">
+                <route.icon className={cn("h-5 w-5 mr-3",route.colr)} />
                 {route.label}
               </div>
             </div>

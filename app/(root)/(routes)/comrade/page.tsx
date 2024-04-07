@@ -1,6 +1,7 @@
 import Categories from "@/components/Categories";
 import Comrades from "@/components/Comrades";
 import SearchInput from "@/components/search-input";
+import { Button } from "@/components/ui/button";
 import prismadb from "@/lib/prismadb";
 
 interface RootPageProps {
@@ -33,8 +34,11 @@ const RootPage = async ({ searchParams }: RootPageProps) => {
   return (
     <div className="h-full p-4 space-y-2">
       <SearchInput />
-      <Categories data={categories} />
-      <Comrades data={data}/>
+      <div className="flex justify-between items-center">
+        <Categories data={categories} />
+        <Button className="space-y-4 ml-2">Create</Button>
+      </div>
+      <Comrades data={data} />
     </div>
   );
 };

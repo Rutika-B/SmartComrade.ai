@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { MessageSquare } from "lucide-react";
 import { Card, CardFooter, CardHeader } from "@/components/ui/card";
+import Empty from "./empty";
 
 interface ComradesProps {
   data: (Comrade & {
@@ -14,14 +15,7 @@ interface ComradesProps {
 }
 const Comrades = ({ data }: ComradesProps) => {
   if (data.length === 0) {
-    return (
-      <div className="pt-10 flex flex-col items-center justify-center space-y-3">
-        <div className="relative w-60 h-60">
-          <Image fill  alt="Empty" src="/empty.png" />
-        </div>
-        <p className="text-sm text-muted-foreground">No comrades found</p>
-      </div>
-    );
+    return <Empty label="No comrades found" />;
   }
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 pb-10">

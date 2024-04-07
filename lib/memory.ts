@@ -28,7 +28,7 @@ export class MemoryManager {
     const pineconeClient = <Pinecone>this.vectorDBClient;
 
     const list = await pineconeClient.listIndexes();
-    console.log("letsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
+    console.log("letssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
     console.log(list);
 
     const pineconeIndex = pineconeClient.Index(
@@ -39,12 +39,15 @@ export class MemoryManager {
       new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
       { pineconeIndex }
     );
-
+      console.log("here is vecgtor store------------------------------")
+      console.log(vectorStore)
     const similarDocs = await vectorStore
       .similaritySearch(recentChatHistory, 3, { fileName: companionFileName })
       .catch((err) => {
         console.log("WARNING: failed to get vector search results.", err);
       });
+      console.log("--------------similar docs----------------------------------")
+    console.log(similarDocs)
     return similarDocs;
   }
 
