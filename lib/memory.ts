@@ -28,19 +28,16 @@ export class MemoryManager {
     const pineconeClient = <Pinecone>this.vectorDBClient;
 
     const list = await pineconeClient.listIndexes();
-    console.log("letssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss")
-    console.log(list);
 
     const pineconeIndex = pineconeClient.Index(
       process.env.PINECONE_INDEX! || ""
     );
-
+    console.log(pineconeIndex);
     const vectorStore = await PineconeStore.fromExistingIndex(
       new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
       { pineconeIndex }
     );
-      console.log("here is vecgtor store------------------------------")
-      console.log(vectorStore)
+
     const similarDocs = await vectorStore
       .similaritySearch(recentChatHistory, 3, { fileName: companionFileName })
       .catch((err) => {
